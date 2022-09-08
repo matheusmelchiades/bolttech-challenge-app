@@ -20,9 +20,10 @@ export default function Project({ children, filterBy }) {
   const changeTab = (tab = TABS.todo) => {
     setTab(tab);
   };
-
   const childrenFiltred = React.Children.toArray(children).filter(child =>
-    tab === TABS.todo ? !filterBy(child.props) : filterBy(child.props)
+    tab === TABS.todo
+      ? !filterBy(child.props)
+      : filterBy(child.props) && child?.type?.name === 'Task'
   );
 
   return (
