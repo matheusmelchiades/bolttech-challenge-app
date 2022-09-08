@@ -8,6 +8,8 @@ import App from './App';
 import theme from './styles/theme';
 import Providers from './contexts';
 
+import "react-datepicker/dist/react-datepicker.css";
+
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 

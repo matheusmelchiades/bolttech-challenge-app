@@ -13,7 +13,7 @@ export const TaskProvider = ({ children }) => {
       content: '',
       status: PROJECT_STATUS.prepareCreate,
       createdAt: new Date().toISOString(),
-      finishedAt: new Date(2022, 8, 9).toISOString(),
+      finishedAt: new Date().toISOString(),
     };
 
     push(projectId, task);
@@ -25,7 +25,7 @@ export const TaskProvider = ({ children }) => {
       ...task,
       id: new Date().getTime().toString(),
       createdAt: new Date().toISOString(),
-      finishedAt: new Date(2022, 8, 9).toISOString(),
+      finishedAt: new Date().toISOString(),
       status: null,
     };
 
