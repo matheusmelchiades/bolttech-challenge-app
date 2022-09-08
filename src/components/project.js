@@ -1,8 +1,30 @@
+import React, { useState } from 'react';
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { FiMoreVertical } from 'react-icons/fi';
 import Menu from './menu';
 
-export default function Project({ children }) {
+const TABS = {
+  todo: 'TODO',
+  completed: 'COMPLETED',
+};
+
+const styleSelected = {
+  color: 'brand',
+  borderBottom: '3px solid',
+  borderColor: 'brand',
+};
+
+export default function Project({ children, filterBy }) {
+  const [tab, setTab] = useState(TABS.todo);
+
+  const changeTab = (tab = TABS.todo) => {
+    setTab(tab);
+  };
+
+  const childrenFiltred = React.Children.toArray(children).filter(child =>
+    tab === TABS.todo ? !filterBy(child.props) : filterBy(child.props)
+  );
+
   return (
     <Box
       id="project"
@@ -26,12 +48,22 @@ export default function Project({ children }) {
         margin="30px -15px 0px -15px"
         padding="0px 15px"
       >
-        <Box pb="5px" borderBottom="3px solid" borderColor="brand">
-          <Text color="brand" fontWeight="bold">
+        <Box
+          pb="5px"
+          onClick={() => changeTab(TABS.todo)}
+          cursor="pointer"
+          {...(tab === TABS.todo ? styleSelected : {})}
+        >
+          <Text color={tab === TABS.todo ? 'brand' : ''} fontWeight="bold">
             Todo
           </Text>
         </Box>
-        <Box ml="25px">
+        <Box
+          ml="25px"
+          onClick={() => changeTab(TABS.completed)}
+          cursor="pointer"
+          {...(tab === TABS.completed ? styleSelected : {})}
+        >
           <Text fontWeight="bold" opacity={0.6}>
             Completed
           </Text>
@@ -39,7 +71,7 @@ export default function Project({ children }) {
       </Flex>
 
       <Flex id="project-items" mt="20px" flexDir="column">
-        {children}
+        {childrenFiltred}
       </Flex>
     </Box>
   );
