@@ -7,19 +7,31 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  const login = useCallback((username, password) => {
-    const credentials = btoa(`${username}:${password}`);
+  const login = useCallback(
+    (username, password) => {
+      const credentials = btoa(`${username}:${password}`);
 
-    console.log('REQUEST');
-    console.log('Authorization: Basic ' + credentials);
+      console.log('REQUEST');
+      console.log('Authorization: Basic ' + credentials);
 
-    setUser({
-      username,
-    });
-    navigate('/');
+      setUser({
+        id: new Date().getTime().toString(),
+        name: username,
+      });
+      navigate('/');
+    },
+    [navigate]
+  );
+
+  const logout = useCallback(() => {
+    setUser(null);
+    navigate('/login');
   }, [navigate]);
 
-  const value = React.useMemo(() => ({ user, login }), [login, user]);
+  const value = React.useMemo(
+    () => ({ user, login, logout }),
+    [login, logout, user]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

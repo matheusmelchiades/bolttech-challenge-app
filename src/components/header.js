@@ -6,7 +6,7 @@ import BoltTechBrand from '../assets/icons/logo';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import Menu from './menu';
 
-export default function Header() {
+export default function Header({ user = {}, onLogout }) {
   return (
     <Flex
       id="header"
@@ -20,21 +20,16 @@ export default function Header() {
     >
       <BoltTechBrand />
       <Flex flexDir="row" alignItems="center">
-        <Menu
-          onlyLogout
-          onLogout={() => {
-            console.log('LOGOUT');
-          }}
-        >
+        <Menu onlyLogout onLogout={onLogout}>
           <Flex cursor="pointer" flexDir="row" align="center">
             <IoMdArrowDropdown size={20} />
             <Text ml="8px" mr="20px">
-              Matheus Maciel
+              {user?.name}
             </Text>
           </Flex>
         </Menu>
         <Avatar
-          name="Matheus Maciel"
+          name={user?.name}
           bg="brand"
           height="50px"
           width="50px"
