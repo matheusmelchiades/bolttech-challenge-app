@@ -3,6 +3,8 @@ import { Box, Checkbox, Flex, Heading, Text, Tooltip } from '@chakra-ui/react';
 import { FiMoreVertical } from 'react-icons/fi';
 import { BsInfoCircle } from 'react-icons/bs';
 
+import Menu from '../components/menu';
+
 export default function Task({ index = 0, data = {} }) {
   return (
     <Flex
@@ -43,9 +45,11 @@ export default function Task({ index = 0, data = {} }) {
       </Flex>
 
       <Flex id="task-option">
-        <Flex alignItems="center">
-          <FiMoreVertical />
-        </Flex>
+        <Menu>
+          <Flex alignItems="center">
+            <FiMoreVertical />
+          </Flex>
+        </Menu>
       </Flex>
     </Flex>
   );

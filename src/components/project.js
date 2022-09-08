@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { FiMoreVertical } from 'react-icons/fi';
+import Menu from './menu';
 
 export default function Project({ children }) {
   return (
@@ -12,9 +13,11 @@ export default function Project({ children }) {
     >
       <Flex id="project-head" justifyContent="space-between">
         <Heading size="sm">Project megazord</Heading>
-        <Flex alignItems="center">
-          <FiMoreVertical />
-        </Flex>
+        <Menu>
+          <Flex alignItems="center">
+            <FiMoreVertical />
+          </Flex>
+        </Menu>
       </Flex>
 
       <Flex
