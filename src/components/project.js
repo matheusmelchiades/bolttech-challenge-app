@@ -4,7 +4,7 @@ import { FiMoreVertical } from 'react-icons/fi';
 import Menu from './menu';
 import ActionButton from './buttons/action';
 import { useProject } from '../hooks/project';
-import { PROJECT_STATUS } from '../contexts/project';
+import { PROJECT_STATUS } from '../contexts/constants';
 
 const TABS = {
   todo: 'TODO',
@@ -15,6 +15,7 @@ const styleSelected = {
   color: 'brand',
   borderBottom: '3px solid',
   borderColor: 'brand',
+  cursor: 'pointer'
 };
 
 export default function Project({ data = {}, children, filterBy }) {
@@ -100,7 +101,7 @@ export default function Project({ data = {}, children, filterBy }) {
             <ActionButton type="cancel" onClick={onCancel} />
           </Box>
         ) : (
-          <Menu onEdit={() => prepareUpdate(data.id)} onDelete={onRemove}>
+          <Menu disable={data.isDone} onEdit={() => prepareUpdate(data.id)} onDelete={onRemove}>
             <Flex alignItems="center">
               <FiMoreVertical />
             </Flex>
@@ -117,7 +118,6 @@ export default function Project({ data = {}, children, filterBy }) {
         <Box
           pb="5px"
           onClick={() => changeTab(TABS.todo)}
-          cursor="pointer"
           {...(tab === TABS.todo ? styleSelected : {})}
         >
           <Text color={tab === TABS.todo ? 'brand' : ''} fontWeight="bold">
@@ -127,7 +127,6 @@ export default function Project({ data = {}, children, filterBy }) {
         <Box
           ml="25px"
           onClick={() => changeTab(TABS.completed)}
-          cursor="pointer"
           {...(tab === TABS.completed ? styleSelected : {})}
         >
           <Text fontWeight="bold" opacity={0.6}>

@@ -1,9 +1,5 @@
 import React, { createContext, useState } from 'react';
-
-export const PROJECT_STATUS = {
-  prepareCreate: 'PREPARE_CREATE',
-  prepareUpdate: 'PREPARE_UPDATE',
-};
+import { PROJECT_STATUS } from './constants';
 
 export const ProjectContext = createContext(null);
 
@@ -70,6 +66,57 @@ export const ProjectProvider = ({ children }) => {
     setProjects(projects.map(p => ({ ...p, status: null })));
   };
 
+  const push = (id, task) => {
+    setProjects(
+      projects.map(p => {
+        if (p.id === id)
+          return {
+            ...p,
+            tasks: [...p.tasks, task],
+          };
+
+        return p;
+      })
+    );
+  };
+
+  const pop = (id, taskId) => {
+    setProjects(
+      projects.map(p => {
+        if (p.id === id) {
+          return {
+            ...p,
+            tasks: p.tasks.filter(t => t.id !== taskId),
+          };
+        }
+
+        return p;
+      })
+    );
+  };
+
+  const replaceTask = (id, taskId, task) => {
+    setProjects(
+      projects.map(p => {
+        if (p.id === id)
+          return {
+            ...p,
+            tasks: p.tasks?.map(t => {
+              if (t.id === taskId)
+                return {
+                  ...t,
+                  ...task,
+                };
+
+              return t;
+            }),
+          };
+
+        return p;
+      })
+    );
+  };
+
   return (
     <ProjectContext.Provider
       value={{
@@ -79,7 +126,10 @@ export const ProjectProvider = ({ children }) => {
         remove,
         update,
         prepareUpdate,
-        resetStatus
+        resetStatus,
+        push,
+        replaceTask,
+        pop,
       }}
     >
       {children}
