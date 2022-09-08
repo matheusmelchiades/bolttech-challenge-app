@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import BoltTechBrand from '../assets/icons/logo';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
 
   return (
@@ -28,12 +28,12 @@ export default function LoginPage() {
         <BoltTechBrand height={50} />
 
         <Heading fontSize="24px" fontWeight="bold" mt="20px">
-          Sign in
+          Register
         </Heading>
 
         <Input
           variant="outline"
-          placeholder="Username"
+          placeholder="username"
           width="100%"
           border="1px solid"
           borderColor="border"
@@ -41,10 +41,21 @@ export default function LoginPage() {
           padding="5px"
           mt="30px"
           textAlign="center"
-          type="text"
+          type="email"
         />
         <Input
           placeholder="Password"
+          width="100%"
+          border="1px solid"
+          borderColor="border"
+          borderRadius="5px"
+          padding="5px"
+          mt="15px"
+          textAlign="center"
+          type="password"
+        />
+        <Input
+          placeholder="Password confirm"
           width="100%"
           border="1px solid"
           borderColor="border"
@@ -63,7 +74,7 @@ export default function LoginPage() {
           mt="35px"
           minH="35px"
         >
-          Sign in
+          Register
         </Button>
 
         <Flex mt="15px">
@@ -72,9 +83,9 @@ export default function LoginPage() {
             opacity="0.7"
             cursor="pointer"
             _hover={{ color: 'brand' }}
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/login')}
           >
-            Don't have an account?
+            Already have an account?
           </Text>
         </Flex>
       </Flex>
