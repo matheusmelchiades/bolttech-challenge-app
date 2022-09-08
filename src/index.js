@@ -3,12 +3,12 @@ import * as ReactDOM from 'react-dom/client';
 
 import { ColorModeScript } from '@chakra-ui/react';
 import { ChakraProvider } from '@chakra-ui/react';
-import App from './App';
 
 import theme from './styles/theme';
 import Providers from './contexts';
 
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import Routes from './routes';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -18,7 +18,7 @@ root.render(
     <ColorModeScript />
     <ChakraProvider theme={theme}>
       <Providers>
-        <App />
+        <Routes />
       </Providers>
     </ChakraProvider>
   </StrictMode>
