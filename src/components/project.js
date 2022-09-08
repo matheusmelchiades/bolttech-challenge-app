@@ -14,7 +14,7 @@ const styleSelected = {
   borderColor: 'brand',
 };
 
-export default function Project({ children, filterBy }) {
+export default function Project({ data = {}, children, filterBy }) {
   const [tab, setTab] = useState(TABS.todo);
 
   const changeTab = (tab = TABS.todo) => {
@@ -35,7 +35,13 @@ export default function Project({ children, filterBy }) {
       padding="25px 15px"
     >
       <Flex id="project-head" justifyContent="space-between">
-        <Heading size="sm">Project megazord</Heading>
+        <Heading size="sm">
+          {`Project ${
+            data.name.includes('Project')
+              ? data.name.replace('Project', '')
+              : data.name
+          }`}
+        </Heading>
         <Menu>
           <Flex alignItems="center">
             <FiMoreVertical />
