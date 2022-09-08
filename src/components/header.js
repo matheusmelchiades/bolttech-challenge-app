@@ -4,6 +4,7 @@ import React from 'react';
 import BoltTechBrand from '../assets/icons/logo';
 
 import { IoMdArrowDropdown } from 'react-icons/io';
+import Menu from './menu';
 
 export default function Header() {
   return (
@@ -16,17 +17,29 @@ export default function Header() {
       justifyContent="space-between"
       bg="white"
       p="0px 80px"
-    > 
-      <BoltTechBrand/>
-      {/* <Image src={BoltTechBrand} /> */}
+    >
+      <BoltTechBrand />
       <Flex flexDir="row" alignItems="center">
-        <Flex cursor="pointer" flexDir="row" align="center">
-          <IoMdArrowDropdown size={20} />
-          <Text ml="8px" mr="20px">
-            Matheus Maciel
-          </Text>
-        </Flex>
-        <Avatar name="Matheus Maciel" bg="brand" height="50px" width="50px"  color="white" />
+        <Menu
+          onlyLogout
+          onLogout={() => {
+            console.log('LOGOUT');
+          }}
+        >
+          <Flex cursor="pointer" flexDir="row" align="center">
+            <IoMdArrowDropdown size={20} />
+            <Text ml="8px" mr="20px">
+              Matheus Maciel
+            </Text>
+          </Flex>
+        </Menu>
+        <Avatar
+          name="Matheus Maciel"
+          bg="brand"
+          height="50px"
+          width="50px"
+          color="white"
+        />
       </Flex>
     </Flex>
   );
