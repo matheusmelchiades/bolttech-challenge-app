@@ -11,6 +11,8 @@ import {
 import { FiMoreVertical } from 'react-icons/fi';
 import { BsInfoCircle } from 'react-icons/bs';
 
+import moment from 'moment';
+
 import Menu from '../components/menu';
 import { PROJECT_STATUS } from '../contexts/constants';
 import ActionButton from './buttons/action';
@@ -101,7 +103,7 @@ export default function Task({ index = 0, data = {}, metadata = {} }) {
             fontSize="0.75rem"
             textDecorationLine={data.isDone ? 'line-through' : 'none'}
           >
-            Due Tomorrow
+            Due {moment(data.finishedAt).calendar()}
           </Text>
 
           <Tooltip

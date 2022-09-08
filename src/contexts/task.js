@@ -12,6 +12,8 @@ export const TaskProvider = ({ children }) => {
       id: new Date().getTime().toString(),
       content: '',
       status: PROJECT_STATUS.prepareCreate,
+      createdAt: new Date().toISOString(),
+      finishedAt: new Date(2022, 8, 9).toISOString(),
     };
 
     push(projectId, task);
@@ -22,6 +24,8 @@ export const TaskProvider = ({ children }) => {
       ...skeleton,
       ...task,
       id: new Date().getTime().toString(),
+      createdAt: new Date().toISOString(),
+      finishedAt: new Date(2022, 8, 9).toISOString(),
       status: null,
     };
 
