@@ -15,7 +15,6 @@ export default function Header() {
       flexDirection="row"
       justifyContent="space-between"
       bg="white"
-      shadow="0px 4px 4px rgba(0, 0, 0, 0.15);"
       p="0px 80px"
     >
       <Image src={BoldTechBrand} />
