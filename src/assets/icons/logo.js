@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BoltTechIcon() {
+export default function BoltTechIcon({ height = 30 }) {
   return (
     <svg
       width="149"
