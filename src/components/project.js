@@ -18,12 +18,13 @@ export default function Project({ children }) {
       </Flex>
 
       <Flex
-        borderBottom="1px solid #E6E7EC"
+        borderBottom="1px solid"
+        borderColor="border"
         margin="30px -15px 0px -15px"
         padding="0px 15px"
       >
-        <Box pb="5px" borderBottom="3px solid #00BAC7">
-          <Text color="#00BAC7" fontWeight="bold">
+        <Box pb="5px" borderBottom="3px solid" borderColor="brand">
+          <Text color="brand" fontWeight="bold">
             Todo
           </Text>
         </Box>
