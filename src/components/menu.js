@@ -8,10 +8,10 @@ import {
 } from '@chakra-ui/react';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
 
-export default function Menu({ onEdit, onDelete, children }) {
+export default function Menu({ disabled = false, onEdit, onDelete, children }) {
   return (
     <Component>
-      <MenuButton>{children}</MenuButton>
+      <MenuButton disabled={disabled}>{children}</MenuButton>
 
       <MenuList
         bg="white"

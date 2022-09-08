@@ -14,9 +14,10 @@ export default function Task({ index = 0, data = {} }) {
       borderRadius="5px"
       padding="10px 15px"
       mt={index > 0 ? '10px' : '0px'}
+      opacity={data.isDone ? '0.6' : '1'}
     >
       <Flex id="task-action">
-        <Checkbox isChecked={data.isDone} />
+        <Checkbox disabled={data.isDone} isChecked={data.isDone} />
       </Flex>
 
       <Flex
@@ -26,11 +27,20 @@ export default function Task({ index = 0, data = {} }) {
         ml="15px"
         justifyContent="center"
       >
-        <Heading size="md" fontWeight="700">
+        <Heading
+          size="md"
+          fontWeight="700"
+          textDecorationLine={data.isDone ? 'line-through' : 'none'}
+        >
           {data.content}
         </Heading>
         <Flex flexDir="row" alignItems="center">
-          <Text color="#707175" opacity="0.7" fontSize="0.75rem">
+          <Text
+            color="#707175"
+            opacity="0.7"
+            fontSize="0.75rem"
+            textDecorationLine={data.isDone ? 'line-through' : 'none'}
+          >
             Due Tomorrow
           </Text>
 
@@ -45,7 +55,7 @@ export default function Task({ index = 0, data = {} }) {
       </Flex>
 
       <Flex id="task-option">
-        <Menu>
+        <Menu disabled={data.isDone}>
           <Flex alignItems="center">
             <FiMoreVertical />
           </Flex>
