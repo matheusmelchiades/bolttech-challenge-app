@@ -1,10 +1,22 @@
 import { Button, Flex, Heading, Input, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BoltTechBrand from '../assets/icons/logo';
+import { useAuth } from '../hooks/auth';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const [state, setState] = useState({});
+
+  const handleChangeState = (field, value) => {
+    setState({ ...state, [field]: value });
+  };
+
+  const onLogin = () => {
+    if (login) login(state.username, state.password);
+  };
 
   return (
     <Flex
@@ -42,6 +54,7 @@ export default function LoginPage() {
           mt="30px"
           textAlign="center"
           type="text"
+          onChange={e => handleChangeState('username', e.target.value)}
         />
         <Input
           placeholder="Password"
@@ -53,6 +66,7 @@ export default function LoginPage() {
           mt="15px"
           textAlign="center"
           type="password"
+          onChange={e => handleChangeState('password', e.target.value)}
         />
 
         <Button
@@ -62,6 +76,7 @@ export default function LoginPage() {
           borderRadius="5px"
           mt="35px"
           minH="35px"
+          onClick={onLogin}
         >
           Sign in
         </Button>

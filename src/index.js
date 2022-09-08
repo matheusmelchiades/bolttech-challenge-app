@@ -5,7 +5,6 @@ import { ColorModeScript } from '@chakra-ui/react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import theme from './styles/theme';
-import Providers from './contexts';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import Routes from './routes';
@@ -17,9 +16,7 @@ root.render(
   <StrictMode>
     <ColorModeScript />
     <ChakraProvider theme={theme}>
-      <Providers>
-        <Routes />
-      </Providers>
+      <Routes />
     </ChakraProvider>
   </StrictMode>
 );
