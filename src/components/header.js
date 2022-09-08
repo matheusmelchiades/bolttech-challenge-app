@@ -25,7 +25,7 @@ export default function Header() {
             Matheus Maciel
           </Text>
         </Flex>
-        <Avatar name="Matheus maciel" />
+        <Avatar name="Matheus Maciel" bg="brand" height="50px" width="50px"  color="white" />
       </Flex>
     </Flex>
   );
