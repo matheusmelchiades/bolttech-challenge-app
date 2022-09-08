@@ -1,7 +1,7 @@
-import { Avatar, Flex, Image, Text } from '@chakra-ui/react';
+import { Avatar, Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 
-import BoldTechBrand from '../assets/images/boldtech.png';
+import BoltTechBrand from '../assets/icons/logo';
 
 import { IoMdArrowDropdown } from 'react-icons/io';
 
@@ -16,8 +16,9 @@ export default function Header() {
       justifyContent="space-between"
       bg="white"
       p="0px 80px"
-    >
-      <Image src={BoldTechBrand} />
+    > 
+      <BoltTechBrand/>
+      {/* <Image src={BoltTechBrand} /> */}
       <Flex flexDir="row" alignItems="center">
         <Flex cursor="pointer" flexDir="row" align="center">
           <IoMdArrowDropdown size={20} />
