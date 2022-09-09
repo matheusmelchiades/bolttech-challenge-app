@@ -8,12 +8,12 @@ export default function ActionButton({ type, onClick, ...props }) {
     return (
       <IconButton
         variant="solid"
-        icon={<HiX />}
+        icon={<HiX color="danger"/>}
         onClick={onClick}
         border="2px"
         borderRadius="5px"
         padding="5px"
-        color="red"
+        color="danger"
         {...props}
       />
     );
@@ -21,12 +21,12 @@ export default function ActionButton({ type, onClick, ...props }) {
   return (
     <IconButton
       variant="solid"
-      icon={<GoCheck />}
+      icon={<GoCheck color="success"/>}
       onClick={onClick}
       border="2px"
       borderRadius="5px"
       padding="5px"
-      color="green"
+      color="success"
       {...props}
     />
   );

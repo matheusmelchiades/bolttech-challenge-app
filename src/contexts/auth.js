@@ -88,10 +88,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!['/login', '/register'].includes(location.pathname)) {
-      if (user && user.id && token && location.pathname !== '/') navigate('/');
-      if (!user || !token) navigate('/login');
-    }
+    if (user && user.id && token && location.pathname !== '/') navigate('/');
+    if (!user || !token) navigate('/login');
   }, [navigate, token, user]);
 
   const value = React.useMemo(
