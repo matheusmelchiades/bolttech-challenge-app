@@ -1,11 +1,32 @@
-import { Button, Flex, Heading, Input, Text } from '@chakra-ui/react';
+import { Button, Flex, Heading, Input, Text, useToast } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BoltTechBrand from '../assets/icons/logo';
+import { useAuth } from '../hooks/auth';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const toast = useToast();
+  const { register } = useAuth();
+  const [state, setState] = useState({});
 
+  const handleChangeState = (field, value) => {
+    setState({ ...state, [field]: value });
+  };
+
+  const onRegister = () => {
+    if (state.password !== state.passwordConfirm)
+      return toast({
+        title: 'Passwords is not matching!',
+        description: 'passwords are wrong!',
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      });
+
+    if (register) register(state.username, state.password);
+  };
   return (
     <Flex
       bg="#E5E5E5"
@@ -41,7 +62,8 @@ export default function RegisterPage() {
           padding="5px"
           mt="30px"
           textAlign="center"
-          type="email"
+          type="text"
+          onChange={e => handleChangeState('username', e.target.value)}
         />
         <Input
           placeholder="Password"
@@ -53,6 +75,7 @@ export default function RegisterPage() {
           mt="15px"
           textAlign="center"
           type="password"
+          onChange={e => handleChangeState('password', e.target.value)}
         />
         <Input
           placeholder="Password confirm"
@@ -64,6 +87,7 @@ export default function RegisterPage() {
           mt="15px"
           textAlign="center"
           type="password"
+          onChange={e => handleChangeState('passwordConfirm', e.target.value)}
         />
 
         <Button
@@ -73,6 +97,7 @@ export default function RegisterPage() {
           borderRadius="5px"
           mt="35px"
           minH="35px"
+          onClick={onRegister}
         >
           Register
         </Button>

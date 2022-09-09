@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import { ColorModeScript } from '@chakra-ui/react';
+import { ColorModeScript, useToast } from '@chakra-ui/react';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import theme from './styles/theme';
