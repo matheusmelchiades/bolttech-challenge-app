@@ -15,7 +15,7 @@ const styleSelected = {
   color: 'brand',
   borderBottom: '3px solid',
   borderColor: 'brand',
-  cursor: 'pointer'
+  cursor: 'pointer',
 };
 
 export default function Project({ data = {}, children, filterBy }) {
@@ -101,7 +101,11 @@ export default function Project({ data = {}, children, filterBy }) {
             <ActionButton type="cancel" onClick={onCancel} />
           </Box>
         ) : (
-          <Menu disable={data.isDone} onEdit={() => prepareUpdate(data.id)} onDelete={onRemove}>
+          <Menu
+            disable={data.isDone}
+            onEdit={() => prepareUpdate(data.id)}
+            onDelete={onRemove}
+          >
             <Flex alignItems="center">
               <FiMoreVertical />
             </Flex>
@@ -118,6 +122,7 @@ export default function Project({ data = {}, children, filterBy }) {
         <Box
           pb="5px"
           onClick={() => changeTab(TABS.todo)}
+          cursor="pointer"
           {...(tab === TABS.todo ? styleSelected : {})}
         >
           <Text color={tab === TABS.todo ? 'brand' : ''} fontWeight="bold">
@@ -127,6 +132,7 @@ export default function Project({ data = {}, children, filterBy }) {
         <Box
           ml="25px"
           onClick={() => changeTab(TABS.completed)}
+          cursor="pointer"
           {...(tab === TABS.completed ? styleSelected : {})}
         >
           <Text fontWeight="bold" opacity={0.6}>
