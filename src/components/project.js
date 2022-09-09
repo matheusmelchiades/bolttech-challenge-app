@@ -141,7 +141,14 @@ export default function Project({ data = {}, children, filterBy }) {
         </Box>
       </Flex>
 
-      <Flex id="project-items" mt="20px" flexDir="column">
+      <Flex
+        id="project-items"
+        mt="20px"
+        flexDir="column"
+        maxH="480px"
+        overflowY="scroll"
+        
+      >
         {childrenFiltred}
       </Flex>
     </Box>
