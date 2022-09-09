@@ -112,10 +112,10 @@ export default function Task({ index = 0, data = {}, metadata = {} }) {
         <Flex flexDir="row" alignItems="center">
           {isEditable ? (
             <DatePicker
-              selected={moment(state?.finishedAt).toDate()}
+              selected={moment(state?.dueAt).toDate()}
               minDate={new Date()}
               onChange={date =>
-                handleChangeState('finishedAt', date?.toISOString())
+                handleChangeState('dueAt', date?.toISOString())
               }
             />
           ) : (
@@ -126,12 +126,12 @@ export default function Task({ index = 0, data = {}, metadata = {} }) {
                 fontSize="0.75rem"
                 textDecorationLine={data.isDone ? 'line-through' : 'none'}
               >
-                Due {moment(data?.finishedAt).calendar()}
+                Due {moment(data?.dueAt).calendar()}
               </Text>
               <Tooltip
                 label={`Created in ${moment(data.createdAt).format(
                   'MMM Do YY [at] hh:mm a'
-                )} and finished in ${moment(data.finishedAt).format(
+                )} and finished in ${moment(data.dueAt).format(
                   'MMM Do YY [at] hh:mm a'
                 )}.`}
               >

@@ -72,7 +72,7 @@ class ProjectService {
       if (err?.response?.data?.message) {
         result.error = err.response.data.message;
       } else {
-        result.error = err.message || 'Ocurred a problem to update a project!';
+        result.error = err.message || 'Ocurred a problem to delete a project!';
       }
     }
 
