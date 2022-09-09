@@ -1,6 +1,6 @@
-import { useToast, useToken } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import React, { createContext, useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import authService from '../services/auth';
 import localStorageService from '../services/localstorage';
@@ -14,6 +14,7 @@ const pathStorage = {
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const toast = useToast();
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
@@ -84,12 +85,12 @@ export const AuthProvider = ({ children }) => {
       api.applyToken(userToken);
       setToken(userToken);
     }
-  }, [user]);
+  }, []);
 
   useEffect(() => {
-    if (user && user.id && token) navigate('/');
-    if (!user || !token) navigate('/login');
-  }, [user]);
+    if (user && user.id && token && location.pathname !== '/') navigate('/');
+    if ((!user || !token) && location.pathname !== '/login') navigate('/login');
+  }, [navigate, token, user]);
 
   const value = React.useMemo(
     () => ({ user, login, logout, register }),
