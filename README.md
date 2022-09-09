@@ -1,6 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# bolttech-todo-app
 
-## Available Scripts
+The project was based on the motivation of the challenge passed by bolttech, but the system's inspiration was based on some research and some task management websites.
+
+# Desing
+
+The process of creation it was bases in clean design. If wanna see more about the components or prototype in the link below.
+
+![Prototype](./docs/prototype.png)
+
+https://www.figma.com/file/p2zjbGh31mJ9aebioXEIkz/Bolttech
+
+
+# Available Scripts
 
 In the project directory, you can run:
 
