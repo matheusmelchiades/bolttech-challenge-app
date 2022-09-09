@@ -1,9 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { PROJECT_STATUS } from './constants';
+
+import projectService from '../services/projects';
+import { useToast } from '@chakra-ui/react';
 
 export const ProjectContext = createContext(null);
 
 export const ProjectProvider = ({ children }) => {
+  const toast = useToast()
   const [projects, setProjects] = useState([]);
 
   const prepareCreate = () => {
@@ -23,20 +27,23 @@ export const ProjectProvider = ({ children }) => {
     ]);
   };
 
-  const create = project => {
+  const create = async project => {
+    const { data } = await projectService.create(project);
+
     setProjects([
       ...projects.filter(p => p.status !== PROJECT_STATUS.prepareCreate),
       {
-        id: new Date().getTime().toString(),
-        name: project.name,
+        ...data,
         tasks: [],
         status: null,
       },
     ]);
   };
 
-  const remove = id => {
-    setProjects(projects.filter(p => p.id !== id));
+  const remove = async id => {
+    const { error } = await projectService.delete(id);
+
+    if (!error) setProjects(projects.filter(p => p.id !== id));
   };
 
   const prepareUpdate = id => {
@@ -48,18 +55,33 @@ export const ProjectProvider = ({ children }) => {
     );
   };
 
-  const update = (projectUpdate, project) => {
-    setProjects(
-      projects.map(p => {
-        if (p.id === project.id)
-          return {
-            status: null,
-            ...projectUpdate,
-          };
-
-        return p;
-      })
+  const update = async (projectUpdate, project) => {
+    const { data, error } = await projectService.update(
+      project.id,
+      projectUpdate
     );
+
+    if (error) {
+      return toast({
+        title: 'Error on update!',
+        description: error,
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      });
+    } else {
+      setProjects(
+        projects.map(p => {
+          if (p.id === project.id)
+            return {
+              ...data,
+              status: null,
+            };
+
+          return p;
+        })
+      );
+    }
   };
 
   const resetStatus = id => {
@@ -116,6 +138,14 @@ export const ProjectProvider = ({ children }) => {
       })
     );
   };
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await projectService.getAll();
+
+      setProjects(data);
+    })();
+  }, []);
 
   return (
     <ProjectContext.Provider

@@ -27,10 +27,15 @@ export default function HomePage() {
         padding="0px 80px"
       >
         {projects.map(project => (
-          <GridItem>
+          <GridItem key={project?.id}>
             <Project data={project} filterBy={props => props?.data?.isDone}>
               {project?.tasks?.map((task, index) => (
-                <Task index={index} data={task} metadata={project} />
+                <Task
+                  key={task.id}
+                  index={index}
+                  data={task}
+                  metadata={project}
+                />
               ))}
               <TaskSkeleton onClick={() => prepareTask(project.id)} />
             </Project>
