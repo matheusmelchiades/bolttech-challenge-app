@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Flex, Heading, Input, Text, useToast } from '@chakra-ui/react';
-import { FiMoreVertical } from 'react-icons/fi';
+import { FiMoreVertical, FiHash } from 'react-icons/fi';
 import Menu from './menu';
 import ActionButton from './buttons/action';
 import { useProject } from '../hooks/project';
@@ -147,8 +147,32 @@ export default function Project({ data = {}, children, filterBy }) {
         flexDir="column"
         maxH="480px"
         overflowY="scroll"
-        
       >
+        {!childrenFiltred.length && (
+          <Flex
+            w="100%"
+            alignItems="center"
+            justifyContent="center"
+            flexDir="column"
+          >
+            <Box
+              color="brand"
+              bg="rgba(230, 231, 236, 0.2)"
+              padding="15px"
+              borderRadius="15px"
+              mt="20%"
+            >
+              <FiHash />
+            </Box>
+            <Heading fontWeight="bold" mt="10px">
+              No tasks yet
+            </Heading>
+            <Text fontSize="0.85rem" mt="5px" maxW="15vw" textAlign="center">
+              Add todo-task to help you in your day's taks and became more
+              organized.
+            </Text>
+          </Flex>
+        )}
         {childrenFiltred}
       </Flex>
     </Box>
